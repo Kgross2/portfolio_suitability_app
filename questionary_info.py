@@ -16,6 +16,7 @@ custom_style=Style([
 ])
 
 def survey_questions():
+<<<<<<< HEAD
     full_name = (questionary.text(
         "What's your name?",
         validate=lambda text: True if len(text) > 0 else "Please enter a valid name",
@@ -70,6 +71,18 @@ def survey_questions():
         style=custom_style
         ).ask(YES_OR_NO)
     
+=======
+    # contact information
+    full_name = questionary.text("What's your name?").ask()
+    phone_number = questionary.text("What's your phone number?, no dashes only number").ask()
+    email_address = questionary.text("What's your email address?").ask()
+    #income questions
+    annual_income = questionary.text("What's your annual income?").ask()
+    investing_experience = questionary.text("How many years of investing experience do you have?").ask()
+    investment_amount = questionary.text("What is the amount you wish to start investing?").ask()
+    annual_expenses = questionary.text("What are your annual expenses?").ask()
+    income_stability = questionary.text(f"Is your source of income stable, YES or NO").ask(YES_OR_NO)
+>>>>>>> 3855a944507fbe0f77d0f325f667c782d2bf65ca
     
     annual_income = float(annual_income)
     investing_experience = int(investing_experience)
@@ -77,8 +90,12 @@ def survey_questions():
     annual_expenses = float(annual_expenses)
     income_stability = str(income_stability)
     
+<<<<<<< HEAD
 
 
+=======
+    # Investing background
+>>>>>>> 3855a944507fbe0f77d0f325f667c782d2bf65ca
 
     risk_level = questionary.select(
         "What is your level of risk?",
@@ -104,6 +121,10 @@ def survey_questions():
         style=custom_style
     ).ask()
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3855a944507fbe0f77d0f325f667c782d2bf65ca
     insert_data = """
     INSERT INTO client (
         'full_name', 'phone_number', 'email_address', 'annual_income', 'investing_experience', 'investment_amount', 'annual_expenses', 'income_stability', 'risk_level', 
@@ -114,3 +135,23 @@ def survey_questions():
     engine.execute(insert_data, (full_name, phone_number, email_address, annual_income, investing_experience, investment_amount, annual_expenses, income_stability, risk_level, investment_strategy, investment_length))
     
     return insert_data
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+>>>>>>> 3855a944507fbe0f77d0f325f667c782d2bf65ca
