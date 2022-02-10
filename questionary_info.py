@@ -6,44 +6,15 @@ import questionary
 import fire
 from questionary.constants import NO, YES, YES_OR_NO
 import sqlalchemy
-
-database_connection_string = "sqlite:///portfolio_suitability.db"
-engine = sqlalchemy.create_engine(database_connection_string, echo=True)
-
-engine.table_names()
-
-create_table = (
-
-"""
-CREATE TABLE client(
-    "full_name" VARCHAR,
-    "phone_number" VARCHAR,
-    "email_address" VARCHAR,
-    "annual_income" FLOAT,
-    "investing_experience" FLOAT,
-    "investment_amount" FLOAT,
-    "annual_expenses" FLOAT,
-    "income_stability" VARCHAR,
-    "risk_level" VARCHAR,
-    "investment_strategy" VARCHAR,
-    "investment_length" VARCHAR
-)
-"""
-)
-engine.execute(create_table)
-
    
 # Define the clients general information
 
 def survey_questions():
+    # contact information
     full_name = questionary.text("What's your name?").ask()
     phone_number = questionary.text("What's your phone number?, no dashes only number").ask()
     email_address = questionary.text("What's your email address?").ask()
-    
-
-
-
-
+    #income questions
     annual_income = questionary.text("What's your annual income?").ask()
     investing_experience = questionary.text("How many years of investing experience do you have?").ask()
     investment_amount = questionary.text("What is the amount you wish to start investing?").ask()
@@ -56,12 +27,7 @@ def survey_questions():
     annual_expenses = float(annual_expenses)
     income_stability = str(income_stability)
     
-    
-    
-
-
-
-
+    # Investing background
 
     risk_level = questionary.select(
         "What is your level of risk?",
@@ -83,9 +49,6 @@ def survey_questions():
     investment_length = str(investment_length)
     
 
-
-
-
     insert_data = """
     INSERT INTO client (
         'full_name', 'phone_number', 'email_address', 'annual_income', 'investing_experience', 'investment_amount', 'annual_expenses', 'income_stability', 'risk_level', 
@@ -99,16 +62,6 @@ def survey_questions():
 
 
 
-# run the questions using fire.Fire
-def run():
-   
-
-   survey_questions()
-   
-   
-
-if __name__ == "__main__":
-    fire.Fire(run)
 
 
 
