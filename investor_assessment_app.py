@@ -11,6 +11,7 @@ def general_info():
     full_name = questionary.text("What's your name?").ask()
     phone_number = questionary.text("What's your phone number?").ask()
     email_address = questionary.text("What's your email address?").ask()
+    
     return full_name, phone_number, email_address
 # Define the clients financial information
 def financial_info():
@@ -59,8 +60,10 @@ def save_questionary_data():
         with open(filename, 'w', newline='') as csvfile:
             csvwriter = csv.writer(csvfile)
             csvwriter.writerow(columns)
+            
             for row in client_data:
                 csvwriter.writerow(row.values())
+            
     if NO:
         sys.exit(f"Thank you for completing our survey!")
     return columns, client_data
